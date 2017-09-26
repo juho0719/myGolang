@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/revel/revel"
+	"time"
 )
 
 var (
@@ -27,6 +28,11 @@ func init() {
 		revel.InterceptorFilter,       // Run interceptors around the action.
 		revel.CompressFilter,          // Compress the result.
 		revel.ActionInvoker,           // Invoke the action.
+	}
+
+	//날짜 서식 지정
+	revel.TemplateFuncs["formatDate"] = func(date time.Time) string {
+		return date.Format("2006/01/02 03:04")
 	}
 
 
